@@ -1,3 +1,5 @@
+package screenmatch.Main;
+
 import screenmatch.math.Calculator;
 import screenmatch.math.RecommendationFilter;
 import screenmatch.models.Episode;

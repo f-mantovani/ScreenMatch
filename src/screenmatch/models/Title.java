@@ -1,9 +1,11 @@
 package screenmatch.models;
 
-public class Title {
+import org.jetbrains.annotations.NotNull;
+
+public class Title implements Comparable<Title>{
     final private String name;
     private int durationInMinutes;
-    private int releaseYear;
+    final private int releaseYear;
     private boolean isInPlan;
     private double rating;
     private int reviewTotal;
@@ -43,7 +45,15 @@ public class Title {
 
     @Override
     public String toString() {
-        return "Movie: %s (%d)".formatted(this.getName(), this.getReleaseYear());
+        String string = "";
+        if (this instanceof Movie) {
+            string =  "Movie: %s (%d)".formatted(this.getName(), this.getReleaseYear());
+
+        } else if (this instanceof Series) {
+            string =  "TV Show: %s (%d)".formatted(this.getName(), this.getReleaseYear());
+        }
+
+        return string;
     }
 
     public int getReviewTotal() {
@@ -67,4 +77,8 @@ public class Title {
     }
 
 
+    @Override
+    public int compareTo(@NotNull Title anotherTitle) {
+        return this.getName().compareTo(anotherTitle.getName());
+    }
 }
